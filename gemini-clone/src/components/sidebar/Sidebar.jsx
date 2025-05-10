@@ -1,30 +1,54 @@
 import React from 'react'
 import { assets } from '../../assets/assets'
+import '../../index.css'
+import { useState } from 'react'
 
 function Sidebar() {
+    const [isExtended, setExtended] = useState(false)
+
   return (
-    <div>
+    <div className='inline-flex justify-between flex-col bg-blue-100 sidebar cursor-pointer text-sm'>
         <div>
-        <div className='m-4'>
+        <div className='my-6 mx-2 hover:bg-blue-200 rounded-2xl p-1.5' onClick={()=> setExtended(prev=>!prev)}>
             <img src={assets.menu_icon} className="h-10" alt="" />
         </div>
-        <div className='flex p-1 items-center'>
+        <div className='flex items-center hover:bg-blue-200  rounded-2xl p-1.5 m-1'>
 
-            <img src={assets.newchat} className="h-10" alt="" />
-            <p>New Chat</p>
+            <img src={assets.newchat} className="h-10 m-2" alt="" />
+            {isExtended?<p className='m-2'>New Chat</p>:null}
         </div>
-        <div className='flex p-1 items-center'>
-
-            <img src={assets.explore} className='h-10' alt="" />
-            <p>Explore Gems</p>
+        <div className='flex items-center   hover:bg-blue-200 rounded-2xl p-1.5 m-1'>
+          {isExtended?<> <img src={assets.explore} className='h-10 m-2' alt="" />
+            <p>Explore Gems</p></>:null}
+        </div>
+       
+        <div className='flex flex-col justify-start'>
+           {isExtended?<><p className=' p-1.5 m-1'>Recents</p>
+            <div className='overflow-auto h-[50vh] flex flex-col justify-start'>
+                <div className='flex items-center  hover:bg-blue-200  rounded-2xl p-1.5 m-1'>
+                    <img src={assets.message} className='h-10' alt="" />
+                    <p className='p-2'>what is a react....</p>
+                </div>
+            </div>
+            </>:null}
         </div>
         </div>
-        <div className='flex h-[65vh] '>
-            <p>Recents</p>
+        <div>
+            <div className='flex items-center   hover:bg-blue-200 rounded-2xl p-1'>
+                <img src={assets.questionmark} className='h-10 m-2 ' alt="" />
+          {isExtended? 
+            <p>Help</p>:null}       
+             </div>
+        <div className='flex items-center   hover:bg-blue-200 rounded-2xl p-1 '>
+            <img src={assets.history} className='h-10 m-2' alt="" />
+           {isExtended? 
+            <p>History</p>:null}
         </div>
-        <div className='flex items-center p-1'>
-            <img src={assets.settings} className='h-10' alt="" />
-            <p>Settings and Help</p>
+        <div className='flex items-center   hover:bg-blue-200 rounded-2xl p-1 '>
+            <img src={assets.settings} className='h-10 m-2' alt="" />
+           {isExtended? 
+            <p>Settings</p>:null}
+        </div>
         </div>
     </div>
   )

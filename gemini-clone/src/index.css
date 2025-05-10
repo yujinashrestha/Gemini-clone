@@ -1,8 +1,59 @@
 @import "tailwindcss";
 
-
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 #root{
   height: 100vh;
   display: flex;
+  font-family: outfit;
 
+}
+
+.sidebar img{
+  width: 20px;
+  height: 20px;
+}
+
+.navbar img{
+  width: 40px;
+  height: 40px;
+}
+
+.greet {
+  background: linear-gradient(16deg, rgb(242, 143, 143), rgb(73, 168, 246));
+  -webkit-background-clip: text; /* for WebKit (Chrome, Safari) */
+  background-clip: text;         /* standard syntax (for future support) */
+  -webkit-text-fill-color: transparent; /* required for gradient text in WebKit */
+  color: transparent;            /* fallback */
+}
+
+.cards img {
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+  
+  
+}
+.card {
+  
+  width: 250px;
+  background-color: #DBEAFE;
+  margin: 30px;
+  padding: 30px;
+  float: right;
+  display: flex;
+  flex-direction: column;
+
+
+  
+}
+
+.card:hover {
+  background-color: #BFDBFE;
+
+}
+
+.input img {
+  width: 20px;
+  height: 20px;
+   
 }

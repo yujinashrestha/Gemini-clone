@@ -7,6 +7,9 @@
   font-family: outfit;
 
 }
+.sidebar{
+  transition: width 0.2s ease-out; 
+}
 
 .sidebar img{
   width: 20px;

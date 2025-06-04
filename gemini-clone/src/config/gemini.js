@@ -1,42 +1,35 @@
-// To run this code you need to install the following dependencies:
-// npm install @google/genai mime
-// npm install -D @types/node
 
-import { GoogleGenAI } from '@google/genai';
+const MODEL_NAME = "gemini-2.5-pro"; // Ensure correct model name
+const BASE_URL = `https://generativelanguage.googleapis.com/v1/models/${MODEL_NAME}:generateContent`;
 
-const APikey = "AIzaSyDHScBV5FxO30uGf3su7yxuaAeBnbM2Hts"; // Replace with a secure method in production
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY; // ✅ Correct for Vite
 
-async function main() {
-  const ai = new GoogleGenAI({
-    apiKey: APikey,
-  });
+console.log("API Key:", API_KEY); // Debugging step
 
-  const config = {
-    responseMimeType: 'text/plain',
-  };
 
-  const model = 'gemini-2.5-pro-preview-05-06';
+export async function main(prompt) {
+  try {
+    const response = await fetch(BASE_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${API_KEY}`,
+      },
+      body: JSON.stringify({ prompt }),
+    });
 
-  const contents = [
-    {
-      role: 'user',
-      parts: [
-        {
-          text: "What is the capital of France?",
-        },
-      ],
-    },
-  ];
+    if (!response.ok) throw new Error(`Error: ${response.status}`);
 
-  const response = await ai.models.generateContentStream({
-    model,
-    config,
-    contents,
-  });
-
-  for await (const chunk of response) {
-    console.log(chunk.text);
+    
+     // Adjust based on API response format
+  } catch (error) {
+    console.error("API request failed:", error);
+    return null;
   }
 }
 
-main();
+
+
+
+
+
